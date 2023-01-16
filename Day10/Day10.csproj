@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRTScreen.cs" />
     <Compile Include="Instruction.cs" />
     <Compile Include="InstructionProcessor.cs" />
     <Compile Include="Program.cs" />
