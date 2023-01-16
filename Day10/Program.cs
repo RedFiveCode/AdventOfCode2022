@@ -11,7 +11,8 @@ namespace Day10
     {
         static void Main(string[] args)
         {
-            PartOne();
+            //PartOne();
+            PartTwo();
         }
 
         static void PartOne()
@@ -41,9 +42,24 @@ namespace Day10
             Console.WriteLine($"Cumulative Signal Strength: {cumulativeSignalStrength}"); // 11720
         }
 
+        static void PartTwo()
+        {
+            //var instructions = Reader.Read("Example2.txt");
+            var instructions = Reader.Read("Data.txt");
+
+            var screen = new CRTScreen();
+
+            var processor = new InstructionProcessor();
+
+            processor.CycleCompleted += (sender, registers) =>
+            {
+                screen.Draw(registers);
+                Console.WriteLine(screen);
+            };
 
             processor.Run(instructions);
 
+            Console.WriteLine(screen); // "ERCREPCJ"
         }
     }
 }
