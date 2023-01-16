@@ -27,9 +27,14 @@
         /// </summary>
         public int Signal { get { return X * Cycles; } }
 
+        /// <summary>
+        /// Current instruction
+        /// </summary>
+        public Instruction Current { get; set; }
+
         public override string ToString()
         {
-            return $"PC={PC}; T={Tick}; Cycles={Cycles}; X={X}; Signal={Signal}";
+            return $"PC={PC}; T={Tick}; Cycles={Cycles}; X={X}; Signal={Signal}; Current={Current.OpCode}";
         }
     }
 }
