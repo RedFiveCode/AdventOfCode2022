@@ -29,6 +29,8 @@ namespace Day10
             while (Registers.PC < instructions.Count)
             {
                 var currentInstruction = instructions[registers.PC];
+                registers.Current = currentInstruction;
+
                 registers.Tick = 1;
 
                 // tick cycle for curent instruction
@@ -50,6 +52,16 @@ namespace Day10
 
                         cumulativeSignalStrength += registers.Signal;
                     }
+
+                    if (CycleCompleted != null)
+                    {
+                        CycleCompleted(this, registers);
+                    }
+                }
+
+                if (InstructionCompleted != null)
+                {
+                    InstructionCompleted(this, registers);
                 }
 
                 registers.PC++;
@@ -59,6 +71,9 @@ namespace Day10
             Console.WriteLine(registers.ToString());
             Console.WriteLine($"Cumulative Signal Strength: {cumulativeSignalStrength}"); // 11720
         }
+
+        public event EventHandler<Registers> InstructionCompleted; // not used; YAGNI?
+        public event EventHandler<Registers> CycleCompleted;
 
         private bool IsCycleOfInterest()
         {
